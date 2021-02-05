@@ -81,10 +81,6 @@ module Fastlane
       def self.return_type
         :string
       end
-
-      def self.category
-        :project
-      end
     end
   end
 end
