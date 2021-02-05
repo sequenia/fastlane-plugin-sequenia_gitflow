@@ -10,8 +10,7 @@ Gem::Specification.new do |spec|
   spec.author        = 'Semen Kologrivov'
   spec.email         = 'firedragon855@gmail.com'
 
-  spec.summary       = 'Script for communicating with sequenia's git repos'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-sequenia_gitflow"
+  spec.summary       = 'Script for communicating with sequenia\'s git repos'
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
