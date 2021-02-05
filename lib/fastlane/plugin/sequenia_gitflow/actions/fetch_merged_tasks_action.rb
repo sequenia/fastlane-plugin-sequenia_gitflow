@@ -74,7 +74,7 @@ module Fastlane
 
       def self.example_code
         [
-          'git_fetcher(last_release_tag: "build/1.0.0(35)")'
+          'fetch_merged_tasks(last_release_tag: "build/1.0.0(35)")'
         ]
       end
 
