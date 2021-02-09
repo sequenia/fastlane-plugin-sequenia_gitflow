@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Script for communicating with sequenia\'s git repos'
   spec.license       = "MIT"
+  spec.homepage      = 'https://github.com/sequenia/fastlane-plugin-sequenia_gitflow'
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
