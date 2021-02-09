@@ -21,7 +21,6 @@ module Fastlane
           merge_commits,
           regexp
         )
-
         value = branches.map do |b|
           components = b.split('/').last.split('_')
           already_with_prefix ? "#{components[0]}_#{components[1]}" : components[0]

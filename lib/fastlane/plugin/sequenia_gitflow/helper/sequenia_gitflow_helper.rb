@@ -22,15 +22,19 @@ module Fastlane
 
       # Перевод хэшей коммитов в список веток
       def self.fetch_merged_task_branches(all_hashes, merge_hashes, regexp)
-        merge_hashes.map { |hash| array_from_gitlog("git branch --remotes --contains #{hash} --merged") }
+        merge_hashes.map do |hash|
+          array_from_gitlog("git branch --remotes --contains #{hash} --merged")
+        end
                     .flatten
                     .uniq
-                    .select { |b| b =~ regexp }
+                    .select do |b|
+          b =~ regexp
+        end
                     .reject do |branch|
-                      # Проверка, если в ветке всего один коммит и он находится в версионной ветке
-                      last_commit = array_from_gitlog("git log --pretty=\"%H\" -p -1 #{branch}").first
-                      all_hashes.include?(last_commit)
-                    end
+          # Проверка, если в ветке всего один коммит и он находится в версионной ветке
+          last_commit = array_from_gitlog("git log --pretty=\"%H\" -p -1 #{branch}").first
+          all_hashes.include?(last_commit)
+        end
       end
 
       def self.array_from_gitlog(source)
