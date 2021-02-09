@@ -7,7 +7,7 @@ module Fastlane
       def self.run(params)
         last_tag = params[:last_release_tag]
         regexp = params[:feature_branches_regexp]
-        with_prefix = params[:with_prefix]
+        already_with_prefix = params[:already_with_prefix]
 
         if !Helper::SequeniaGitflowHelper.tag_exist?(last_tag)
           UI.user_error!("Tag '#{last_tag}' doesn't exist")
@@ -24,7 +24,7 @@ module Fastlane
 
         value = branches.map do |b|
           components = b.split('/').last.split('_')
-          with_prefix ? "#{components[0]}_#{components[1]}" : components[0]
+          already_with_prefix ? "#{components[0]}_#{components[1]}" : components[0]
         end
                         .sort
         return value
@@ -52,7 +52,7 @@ module Fastlane
                                        optional: true,
                                        default_value: /^(.)*\/(task)\/(\d)+_(.)*$/,
                                        type: Regexp),
-          FastlaneCore::ConfigItem.new(key: :with_prefix,
+          FastlaneCore::ConfigItem.new(key: :already_with_prefix,
                                        description: 'Does feature branches names have prefix from project\'s identifier (like IOS, WIL, WEST etc.)',
                                        optional: true,
                                        default_value: false,
