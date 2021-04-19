@@ -44,7 +44,7 @@ module Fastlane
         [
           FastlaneCore::ConfigItem.new(key: :last_release_tag,
                                        description: 'Tag of the last release',
-                                       optional: false,
+                                       optional: true,
                                        type: String),
           FastlaneCore::ConfigItem.new(key: :feature_branches_regexp,
                                        description: 'Regular expression that matching feature branches names',

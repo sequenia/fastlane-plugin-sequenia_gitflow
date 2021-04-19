@@ -10,6 +10,10 @@ module Fastlane
         !array_from_gitlog("git tag -l \"#{tag}\"").empty?
       end
 
+      def self.first_commit
+        array_from_gitlog('git log --reverse | head -n1').first
+      end
+
       # Получение merge-коммитов от последнего релизного тэга до HEAD ветки
       def self.current_branch_merge_commit_hashes(tag)
         array_from_gitlog("git log \"#{tag}\"...HEAD --pretty=\"%H\" --merges")
