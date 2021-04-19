@@ -6,15 +6,16 @@ module Fastlane
     class FetchMergedTasksAction < Action
       def self.run(params)
         last_tag = params[:last_release_tag]
+        first_commit = Helper::SequeniaGitflowHelper.first_commit
         regexp = params[:feature_branches_regexp]
         already_with_prefix = params[:already_with_prefix]
 
-        if !Helper::SequeniaGitflowHelper.tag_exist?(last_tag)
+        if !last_tag.nil? && !Helper::SequeniaGitflowHelper.tag_exist?(last_tag)
           UI.user_error!("Tag '#{last_tag}' doesn't exist")
         end
 
-        all_branch_commits = Helper::SequeniaGitflowHelper.current_branch_all_commit_hashes(last_tag)
-        merge_commits = Helper::SequeniaGitflowHelper.current_branch_merge_commit_hashes(last_tag)
+        all_branch_commits = Helper::SequeniaGitflowHelper.current_branch_all_commit_hashes(last_tag || first_commit)
+        merge_commits = Helper::SequeniaGitflowHelper.current_branch_merge_commit_hashes(last_tag || first_commit)
 
         branches = Helper::SequeniaGitflowHelper.fetch_merged_task_branches(
           all_branch_commits,

@@ -11,7 +11,7 @@ module Fastlane
       end
 
       def self.first_commit
-        array_from_gitlog('git log --reverse | head -n1').first
+        array_from_gitlog('git log --pretty=\"%H\" --reverse | head -n1').first
       end
 
       # Получение merge-коммитов от последнего релизного тэга до HEAD ветки
