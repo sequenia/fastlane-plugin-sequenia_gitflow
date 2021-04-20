@@ -27,6 +27,7 @@ module Fastlane
           already_with_prefix ? "#{components[0]}_#{components[1]}" : components[0]
         end
                         .sort
+                        .uniq
         return value
       rescue => ex
         UI.error(ex)
